@@ -6,9 +6,12 @@
     "test": "jest",
     "lint": "eslint 'src/**/*.{ts,js}'",
     "format": "prettier --write 'src/**/*.{ts,js}'",
+    "dev": "ts-node-dev src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "start-build": "node dist/app.js",
     "prepare": "husky install"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -37,10 +40,10 @@
     "swagger-ui-express": "^5.0.1",
     "yarn": "^1.22.22"
   },
-    "lint-staged": {
-      "*.ts": [
-        "eslint --fix",
-        "git add"
-      ]
-    }
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }
