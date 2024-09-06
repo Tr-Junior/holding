@@ -8,7 +8,7 @@ const swaggerOptions = {
     info: {
       title: 'Minha API',
       version: '1.0.0',
-      description: 'API de exemplo usando Swagger',
+      description: 'API rodando',
     },
     servers: [
       {
