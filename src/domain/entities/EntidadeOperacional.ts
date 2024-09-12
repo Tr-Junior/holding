@@ -2,7 +2,7 @@ export class EntidadeOperacional {
   id: string;
   nome: string;
   descricao: string;
-  
+
   constructor(id: string, nome: string, descricao: string) {
     this.id = id;
     this.nome = nome;
