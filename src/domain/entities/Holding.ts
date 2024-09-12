@@ -1,4 +1,4 @@
-import { EntidadeOperacional } from "./EntidadeOperacional";
+import { EntidadeOperacional } from './EntidadeOperacional';
 
 export class Holding {
   id: string;
