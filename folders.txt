@@ -1,0 +1,54 @@
+src/
+│
+├── domain/                          # Camada de domínio (entidades e regras de negócio)
+│   ├── entities/
+│   │   ├── Holding.ts               # Entidade Holding
+│   │   ├── EntidadeOperacional.ts   # Entidade Operacional
+│   │   ├── ContaReceber.ts          # Entidade ContaReceber
+│   │   ├── ContaPagar.ts            # Entidade ContaPagar
+│   │   ├── Processo.ts              # Entidade Processo
+│   │   └── Relatorio.ts             # Entidade Relatório
+│   ├── repositories/
+│   │   ├── IHoldingRepository.ts    # Interface para o repositório de Holding
+│   │   ├── IContaReceberRepository.ts # Interface para o repositório de ContaReceber
+│   │   ├── IContaPagarRepository.ts # Interface para o repositório de ContaPagar
+│   │   └── IProcessoRepository.ts   # Interface para o repositório de Processo
+│   └── services/
+│       └── NotificationService.ts   # Serviço de notificação
+│
+├── useCases/                        # Camada de casos de uso (regras de aplicação)
+│   ├── registrarHolding/
+│   │   ├── RegistrarHoldingUseCase.ts # Caso de uso para registrar holding
+│   │   └── RegistrarHoldingDTO.ts     # DTO para o caso de uso
+│   ├── registrarContaReceber/
+│   │   ├── RegistrarContaReceberUseCase.ts # Caso de uso para registrar conta a receber
+│   │   └── RegistrarContaReceberDTO.ts     # DTO para o caso de uso
+│   ├── atualizarStatusPagamento/
+│   │   ├── AtualizarStatusPagamentoUseCase.ts # Caso de uso para atualizar status de pagamento
+│   │   └── AtualizarStatusPagamentoDTO.ts     # DTO para o caso de uso
+│   └── acompanharProcesso/
+│       ├── AcompanharProcessoUseCase.ts    # Caso de uso para acompanhar processo
+│       └── AcompanharProcessoDTO.ts        # DTO para o caso de uso
+│
+├── controllers/                    # Interface de entrada (Controllers)
+│   ├── HoldingController.ts        # Controller de Holding
+│   ├── ContaReceberController.ts   # Controller de ContaReceber
+│   ├── ContaPagarController.ts     # Controller de ContaPagar
+│   ├── ProcessoController.ts       # Controller de Processo
+│   └── RelatorioController.ts      # Controller de Relatório
+│
+└── infra/                          # Infraestrutura (banco de dados, integrações)
+    ├── db/
+    │   ├── mongoose/               # Cliente do Mongoose ORM
+    │   │   ├── HoldingSchema.ts     # Schema de Holding
+    │   │   ├── ContaReceberSchema.ts# Schema de ContaReceber
+    │   │   ├── ContaPagarSchema.ts  # Schema de ContaPagar
+    │   │   ├── ProcessoSchema.ts    # Schema de Processo
+    │   │   └── RelatorioSchema.ts   # Schema de Relatório
+    │   ├── HoldingRepository.ts     # Implementação do repositório de Holding
+    │   ├── ContaReceberRepository.ts# Implementação do repositório de ContaReceber
+    │   ├── ContaPagarRepository.ts  # Implementação do repositório de ContaPagar
+    │   └── ProcessoRepository.ts    # Implementação do repositório de Processo
+    └── services/
+        ├── EmailNotificationService.ts # Implementação do serviço de notificação via e-mail
+        └── GoogleAgendaService.ts      # Implementação da integração com Google Agenda
