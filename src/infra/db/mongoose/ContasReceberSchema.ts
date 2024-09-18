@@ -5,8 +5,12 @@ const ContaReceberSchema = new Schema({
   descricao: { type: String, required: true },
   dataEmissao: { type: Date, required: true },
   valor: { type: Number, required: true },
-  statusPagamento: { type: String, enum: ['PENDENTE', 'PAGO'], default: 'PENDENTE' },
-  dataRecebimento: { type: Date }
+  statusPagamento: {
+    type: String,
+    enum: ['PENDENTE', 'PAGO'],
+    default: 'PENDENTE',
+  },
+  dataRecebimento: { type: Date },
 });
 
 export const ContaReceberModel = model('ContaReceber', ContaReceberSchema);
