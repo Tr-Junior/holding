@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Para analisar dados de fo
 
 const startServer = async () => {
   await connectToDatabase(); // Conectar ao MongoDB Atlas
-}
+};
 
 // Rotas
 app.use('/api', routes);
