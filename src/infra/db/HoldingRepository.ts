@@ -3,21 +3,28 @@ import { IHoldingRepository } from '../../domain/repositories/IHoldingRepository
 import { Holding } from '../../domain/entities/Holding';
 
 export class HoldingRepository implements IHoldingRepository {
-  findAll(): Promise<Holding[]> {
-    throw new Error('Method not implemented.');
-  }
-  update(id: string, holdingData: Partial<Holding>): Promise<Holding | null> {
-    throw new Error('Method not implemented.');
-  }
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
-  async save (holdingData: any): Promise<any> {
-    const holding = new HoldingModel(holdingData);
-    return holding.save();
+  async findAll(): Promise<Holding[]> {
+    const holdings = await HoldingModel.find();
+    return holdings.map(holding => holding.toObject() as unknown as Holding);
   }
 
-  async findById (id: string): Promise<any> {
-    return HoldingModel.findById(id);
+  async update(id: string, holdingData: Partial<Holding>): Promise<Holding | null> {
+    const updatedHolding = await HoldingModel.findByIdAndUpdate(id, holdingData, { new: true });
+    return updatedHolding ? (updatedHolding.toObject() as unknown as Holding) : null;
+  }
+
+  async delete(id: string): Promise<void> {
+    await HoldingModel.findByIdAndDelete(id);
+  }
+
+  async save(holding: Holding): Promise<Holding> {
+    const holdingModel = new HoldingModel(holding);
+    const savedHolding = await holdingModel.save();
+    return savedHolding.toObject() as unknown as Holding;
+  }
+
+  async findById(id: string): Promise<Holding | null> {
+    const holding = await HoldingModel.findById(id);
+    return holding ? (holding.toObject() as unknown as Holding) : null;
   }
 }
