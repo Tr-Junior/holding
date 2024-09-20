@@ -11,7 +11,7 @@ export class HoldingRepository implements IHoldingRepository {
   async update(id: string, holdingData: Partial<Holding>): Promise<Holding | null> {
     const updatedHolding = await HoldingModel.findByIdAndUpdate(id, holdingData, { new: true });
     return updatedHolding ? (updatedHolding.toObject() as unknown as Holding) : null;
-  }
+  }  
 
   async delete(id: string): Promise<void> {
     await HoldingModel.findByIdAndDelete(id);
