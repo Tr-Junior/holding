@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
 import { RegistrarHoldingUseCase } from '../useCases/registrarHolding/RegistrarHoldingUseCase';
 import { RegistrarHoldingDTO } from '../useCases/registrarHolding/RegistrarHoldingDTO';
-import { ListHoldingUseCase } from '../useCases/registrarHolding/ListHoldingUseCase';
+import { ListHoldingUseCase } from '../useCases/ListarHolding/ListHoldingUseCase';
+import { UpdateHoldingUseCase } from '../useCases/UpdateHolding/UpdateHoldingUseCase';
 
 export class HoldingController {
   constructor(
     private registrarHoldingUseCase: RegistrarHoldingUseCase,
-    private listHoldingUseCase: ListHoldingUseCase
+    private listHoldingUseCase: ListHoldingUseCase,
+    private updateHoldingUseCase: UpdateHoldingUseCase
   ) {}
 
   async registerHolding(req: Request, res: Response): Promise<void> {
@@ -86,6 +88,19 @@ export class HoldingController {
     } catch (error) {
       console.error('Erro ao listar holdings:', error); // Log detalhado para debugging
       res.status(500).send({ error: 'Erro interno ao listar holdings.' });
+    }
+  }
+
+
+  async updateHolding(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const holdingData = req.body;
+
+    try {
+      const updatedHolding = await this.updateHoldingUseCase.execute(id, holdingData);
+      res.status(200).json(updatedHolding);
+    } catch (error: any) {
+      res.status(404).json({ error: error.message });
     }
   }
 }
